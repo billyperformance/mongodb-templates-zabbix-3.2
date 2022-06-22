@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>4.0</version>
+    <version>2.0</version>
     <date>2018-12-10T15:34:56Z</date>
     <groups>
         <group>
@@ -27,15 +27,17 @@
                     <name>RS probe</name>
                     <type>10</type>
                     <snmp_community/>
+                    <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>mongod-rs-probe.py[-c, {$RS_STRING}, -n, {$RS_ZABBIX_NAME}, -r, {$RS_NAME}, -u, {$MONGO_USER}, -s, {$MONGO_PASS}]</key>
-                    <delay>1m</delay>
-                    <history>90d</history>
+                    <delay>60</delay>
+                    <history>90</history>
                     <trends>0</trends>
                     <status>0</status>
                     <value_type>4</value_type>
                     <allowed_hosts/>
                     <units/>
+                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -43,8 +45,11 @@
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
+                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -60,41 +65,23 @@
                     </applications>
                     <valuemap/>
                     <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>1</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
+
                 </item>
                 <item>
                     <name>rs.connect</name>
                     <type>2</type>
                     <snmp_community/>
+                    <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>rs.connect</key>
                     <delay>0</delay>
-                    <history>1w</history>
-                    <trends>1w</trends>
+                    <history>7</history>
+                    <trends>7</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
+                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -102,8 +89,11 @@
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
+                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -119,41 +109,23 @@
                     </applications>
                     <valuemap/>
                     <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>1</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
+
                 </item>
                 <item>
                     <name>rs.delete</name>
                     <type>2</type>
                     <snmp_community/>
+                    <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>rs.delete</key>
                     <delay>0</delay>
-                    <history>1w</history>
-                    <trends>1w</trends>
+                    <history>7</history>
+                    <trends>7</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
+                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -161,8 +133,11 @@
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
+                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -178,41 +153,23 @@
                     </applications>
                     <valuemap/>
                     <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>1</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
+
                 </item>
                 <item>
                     <name>rs.insert</name>
                     <type>2</type>
                     <snmp_community/>
+                    <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>rs.insert</key>
                     <delay>0</delay>
-                    <history>1w</history>
-                    <trends>1w</trends>
+                    <history>7</history>
+                    <trends>7</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
+                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -220,8 +177,11 @@
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
+                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -237,41 +197,23 @@
                     </applications>
                     <valuemap/>
                     <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>1</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
+
                 </item>
                 <item>
                     <name>rs.read</name>
                     <type>2</type>
                     <snmp_community/>
+                    <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>rs.read</key>
                     <delay>0</delay>
-                    <history>1w</history>
-                    <trends>1w</trends>
+                    <history>7</history>
+                    <trends>7</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
+                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -279,8 +221,11 @@
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
+                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -296,41 +241,23 @@
                     </applications>
                     <valuemap/>
                     <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>1</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
+
                 </item>
                 <item>
                     <name>rs.warn</name>
                     <type>2</type>
                     <snmp_community/>
+                    <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>rs.warn</key>
                     <delay>0</delay>
-                    <history>1w</history>
-                    <trends>2w</trends>
+                    <history>7</history>
+                    <trends>14</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
+                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -338,8 +265,11 @@
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
+                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -355,31 +285,10 @@
                     </applications>
                     <valuemap/>
                     <logtimefmt/>
-                    <preprocessing/>
-                    <jmx_endpoint/>
-                    <timeout>3s</timeout>
-                    <url/>
-                    <query_fields/>
-                    <posts/>
-                    <status_codes>200</status_codes>
-                    <follow_redirects>1</follow_redirects>
-                    <post_type>0</post_type>
-                    <http_proxy/>
-                    <headers/>
-                    <retrieve_mode>0</retrieve_mode>
-                    <request_method>1</request_method>
-                    <output_format>0</output_format>
-                    <allow_traps>0</allow_traps>
-                    <ssl_cert_file/>
-                    <ssl_key_file/>
-                    <ssl_key_password/>
-                    <verify_peer>0</verify_peer>
-                    <verify_host>0</verify_host>
-                    <master_item/>
+
                 </item>
             </items>
             <discovery_rules/>
-            <httptests/>
             <macros/>
             <templates/>
             <screens/>
@@ -388,67 +297,43 @@
     <triggers>
         <trigger>
             <expression>{rs-probe:mongod-rs-probe.py[-c, {$RS_STRING}, -n, {$RS_ZABBIX_NAME}, -r, {$RS_NAME}, -u, {$MONGO_USER}, -s, {$MONGO_PASS}].strlen()}&gt;1 and ({rs-probe:rs.connect.avg(300)}=0 or {rs-probe:rs.connect.nodata(600)}=1)</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
             <name>RS probe error connect</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
             <url/>
             <status>0</status>
             <priority>4</priority>
             <description/>
             <type>0</type>
-            <manual_close>0</manual_close>
             <dependencies/>
-            <tags/>
         </trigger>
         <trigger>
             <expression>{rs-probe:mongod-rs-probe.py[-c, {$RS_STRING}, -n, {$RS_ZABBIX_NAME}, -r, {$RS_NAME}, -u, {$MONGO_USER}, -s, {$MONGO_PASS}].strlen()}&gt;1 and {rs-probe:rs.insert.avg(300)}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
             <name>RS probe error insert</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
             <url/>
             <status>0</status>
             <priority>4</priority>
             <description/>
             <type>0</type>
-            <manual_close>0</manual_close>
             <dependencies/>
-            <tags/>
         </trigger>
         <trigger>
             <expression>{rs-probe:rs.warn.avg(300)}=1 and {rs-probe:mongod-rs-probe.py[-c, {$RS_STRING}, -n, {$RS_ZABBIX_NAME}, -r, {$RS_NAME}, -u, {$MONGO_USER}, -s, {$MONGO_PASS}].strlen()}&gt;1</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
             <name>RS probe warn</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
             <url/>
             <status>0</status>
             <priority>2</priority>
             <description/>
             <type>0</type>
-            <manual_close>0</manual_close>
             <dependencies/>
-            <tags/>
         </trigger>
         <trigger>
             <expression>{rs-probe:mongod-rs-probe.py[-c, {$RS_STRING}, -n, {$RS_ZABBIX_NAME}, -r, {$RS_NAME}, -u, {$MONGO_USER}, -s, {$MONGO_PASS}].strlen()}&gt;1</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
             <name>TEST</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
             <url/>
             <status>1</status>
             <priority>0</priority>
             <description/>
             <type>0</type>
-            <manual_close>0</manual_close>
             <dependencies/>
-            <tags/>
         </trigger>
     </triggers>
 </zabbix_export>
