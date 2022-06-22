@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 from __future__ import print_function
 import sys, getopt
@@ -7,7 +7,7 @@ from pymongo import MongoClient
 import time
 import subprocess
 import re
-import urllib
+import urllib.parse
 
 ZBSERVER = 'localhost'
 ZBPORT = 10051
@@ -30,9 +30,18 @@ for opt, arg in opts:
     elif opt == '-s':
         mpass = arg
 
-arg = "-u " + muser + " -p " + mpass + " -h " + mongohost + ":" + mongoport + " --authenticationDatabase=admin --rowcount 1 --noheaders"
-cmd = ['mongostat', "-u", muser, "-p", mpass, "-h", mongohost + ":" + mongoport, "--authenticationDatabase=admin", "--rowcount", "1", "--noheaders"]
-r = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+cmd = ['mongostat', "-h", mongohost + ":" + mongoport, "--rowcount", "1", "--noheaders", "--humanReadable=false"]
+cmd.extend(['-o', 'insert,query,update,delete,getmore,command,vsize,res,qrw,arw,net_in,net_out,conn,set,repl'])
+mongoURI = 'mongodb://'
+
+if muser != 'NONE':
+    cmd.extend(["-u", muser, "-p", mpass, "--authenticationDatabase=admin"])
+    mongoURI += muser + ':' + urllib.parse.quote(mpass) + '@'
+
+mongoURI += mongohost + ':' + mongoport + '/admin'
+
+r = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 out, err = r.communicate()
 res = out + err
 
@@ -48,7 +57,7 @@ if len(err) > 0:
     print(err)
     sys.exit(1)
 res = res.rstrip()
-res = res.replace('*','')
+res = str(res).replace('*','')
 res = re.sub("^ +","",res)
 arr = re.split(" +", res)
 
@@ -90,7 +99,7 @@ def str_to_bytes(s):
             i = 0
     return i
 
-if len(arr) < 18:
+if len(arr) < 13:
     err = 'Unknown error!'
     packet = [ ZabbixMetric(zbhost, 'mongodb_state', state),
         ZabbixMetric(zbhost, 'mongodb_errstr', err) ]
@@ -99,7 +108,13 @@ if len(arr) < 18:
     sys.exit(1)
 
 # Human readable names for better understanding
-insert, query, update, delete, getmore, command, dirty, used, flushes, vsize, resm, qr, ar, netin, netout, conn, rset, repl = arr[:18]
+insert, query, update, delete, getmore, command, vsize, resm, qr, ar, netin, netout, conn = arr[:13]
+try:
+    rset, repl = arr[13:15]
+except Exception as e:
+    rset = 'N/A'
+    repl = 'N/A'
+
 # Add known opcounters to zabbix packet
 err = 'OK'
 state = 1
@@ -109,17 +124,28 @@ conn = str_to_int(conn)
 packet.append(ZabbixMetric(zbhost, "mongodb_conn", conn))
 packet.append(ZabbixMetric(zbhost, "mongodb_rs_name", rset))
 packet.append(ZabbixMetric(zbhost, "mongodb_rs_status", repl))
-m = re.match('(\d+)\|(\d+)',ar)
-if m:
-    ar = m.group(1)
-    aw = m.group(2)
+qm = re.match('(\d+)\|(\d+)',qr)
+if qm:
+    qr = qm.group(1)
+    qw = qm.group(2)
+else:
+    qr = 0
+    qw = 0
+packet.append(ZabbixMetric(zbhost, "mongodb_queueclients_read", qr))
+packet.append(ZabbixMetric(zbhost, "mongodb_queueclients_write", qw))
+am = re.match('(\d+)\|(\d+)',ar)
+if am:
+    ar = am.group(1)
+    aw = am.group(2)
 else:
     ar = 0
     aw = 0
-packet.append(ZabbixMetric(zbhost, "mongodb_aclients_read", ar))
-packet.append(ZabbixMetric(zbhost, "mongodb_aclients_write", aw))
+packet.append(ZabbixMetric(zbhost, "mongodb_activeclients_read", ar))
+packet.append(ZabbixMetric(zbhost, "mongodb_activeclients_write", aw))
 vsize = str_to_bytes(vsize)
 packet.append(ZabbixMetric(zbhost, "mongodb_vsize", vsize))
+resm = str_to_bytes(resm)
+packet.append(ZabbixMetric(zbhost, "mongodb_res", resm))
 netin = str_to_bytes(netin)
 packet.append(ZabbixMetric(zbhost, "mongodb_netin", netin))
 netout = str_to_bytes(netout)
@@ -138,11 +164,13 @@ except Exception as e:
 print("History opcounters")
 print(ts, insert, update, delete, query, getmore, command)
 
+
+
 # Get serverStatus stats
 try:
-    mo = MongoClient('mongodb://' + muser + ':' + urllib.quote(mpass) + '@' + mongohost + ':' + mongoport + '/admin', connectTimeoutMS=5000)
+    mo = MongoClient(mongoURI, connectTimeoutMS=5000)
 except Exception as e:
-    print ('Can\'t connect to '+mongohost) 
+    print ('Can\'t connect to '+mongohost)
     print ("ERROR:", e)
     sys.exit(1)
 res = mo.admin.command('serverStatus')
